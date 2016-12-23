@@ -1,0 +1,67 @@
+<?php
+
+namespace MOHA\CoferenceBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Session
+ *
+ * @ORM\Table(name="session", indexes={@ORM\Index(name="FK_PRESIDENT_SESSION", columns={"id_pres"}), @ORM\Index(name="FK_PROG_SESSION", columns={"id_prog"})})
+ * @ORM\Entity
+ */
+class Session
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="heure_deb", type="datetime", nullable=true)
+     */
+    private $heureDeb;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="heure_fin", type="datetime", nullable=true)
+     */
+    private $heureFin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="jour", type="date", nullable=true)
+     */
+    private $jour;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_sess", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idSess;
+
+    /**
+     * @var \MOHA\CoferenceBundle\Entity\Programme
+     *
+     * @ORM\ManyToOne(targetEntity="MOHA\CoferenceBundle\Entity\Programme")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_prog", referencedColumnName="id_prog")
+     * })
+     */
+    private $idProg;
+
+    /**
+     * @var \MOHA\CoferenceBundle\Entity\President
+     *
+     * @ORM\ManyToOne(targetEntity="MOHA\CoferenceBundle\Entity\President")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_pres", referencedColumnName="id_pres")
+     * })
+     */
+    private $idPres;
+
+
+}
+

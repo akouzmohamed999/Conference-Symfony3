@@ -1,0 +1,69 @@
+<?php
+
+namespace MOHA\CoferenceBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Auteur
+ *
+ * @ORM\Table(name="auteur")
+ * @ORM\Entity
+ */
+class Auteur
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="text", length=65535, nullable=true)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="text", length=65535, nullable=true)
+     */
+    private $prenom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="text", length=65535, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_aut", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idAut;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="MOHA\CoferenceBundle\Entity\Article", inversedBy="idAut")
+     * @ORM\JoinTable(name="auteur_article",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="id_aut", referencedColumnName="id_aut")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="id_art", referencedColumnName="id_art")
+     *   }
+     * )
+     */
+    private $idArt;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idArt = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

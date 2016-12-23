@@ -1,0 +1,29 @@
+{% extends "MOHACoferenceBundle:Default:base.html.twig" %}
+{% block title %}
+    Liste des Auteurs
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel panel-heading">
+                    Liste des utilisateurs
+                </div>
+                <div class="panel panel-body">
+                    <table class="table table-bordered">
+
+                        <tbody>
+                        {% for auteur in auteurs %}
+                            <tr>
+                                <td>{{ auteur.nom }}</td>
+                                <td>{{ auteur.prenom }}</td>
+                                <td>{{ auteur.email }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

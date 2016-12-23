@@ -1,0 +1,57 @@
+<?php
+
+namespace MOHA\CoferenceBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Article
+ *
+ * @ORM\Table(name="article", indexes={@ORM\Index(name="FK_ARTICLE_SESSION", columns={"id_sess"})})
+ * @ORM\Entity
+ */
+class Article
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="text", length=65535, nullable=true)
+     */
+    private $titre;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_art", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idArt;
+
+    /**
+     * @var \MOHA\CoferenceBundle\Entity\Session
+     *
+     * @ORM\ManyToOne(targetEntity="MOHA\CoferenceBundle\Entity\Session")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_sess", referencedColumnName="id_sess")
+     * })
+     */
+    private $idSess;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="MOHA\CoferenceBundle\Entity\Auteur", mappedBy="idArt")
+     */
+    private $idAut;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idAut = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

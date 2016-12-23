@@ -1,0 +1,47 @@
+<?php
+
+namespace MOHA\CoferenceBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Programme
+ *
+ * @ORM\Table(name="programme")
+ * @ORM\Entity
+ */
+class Programme
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="intitule", type="text", length=65535, nullable=true)
+     */
+    private $intitule;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_deb", type="date", nullable=true)
+     */
+    private $dateDeb;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_fin", type="date", nullable=true)
+     */
+    private $dateFin;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_prog", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idProg;
+
+
+}
+
